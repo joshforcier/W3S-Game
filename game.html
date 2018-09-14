@@ -1,5 +1,4 @@
 <!--W3Schools game-->
-
 <html>
 <head>
 <style>
@@ -35,7 +34,8 @@ var myScore;
 var score = 0;
 var mySound;
 
-function startGame() {
+function startGame() 
+{
     myGamePiece = new component(20, 20, "red", 20, 120); //creates gamepiece, sets size, color, and position
     myGamePiece.gravity = 0.15; //gravity acceleration
     myScore = new component("36px", "arial", "white", 15, 45, "text"); //score size, color, and position
@@ -58,7 +58,8 @@ var myGameArea = {
     }
 }
 
-function sound(src) {
+function sound(src) 
+{
     this.sound = document.createElement("audio");
     this.sound.src = src; 
     document.body.appendChild(this.sound);
@@ -71,7 +72,8 @@ function sound(src) {
     }
 }
 
-function component(width, height, color, x, y, type) {
+function component(width, height, color, x, y, type) 
+{
     this.type = type;
     this.score = 0;
     this.width = width;
@@ -82,7 +84,8 @@ function component(width, height, color, x, y, type) {
     this.y = y;
     this.gravity = 0;
     this.gravitySpeed = 0;
-    this.update = function() {
+    this.update = function() 
+    {
         ctx = myGameArea.context;
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
@@ -95,20 +98,23 @@ function component(width, height, color, x, y, type) {
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     }
-    this.newPos = function() {
+    this.newPos = function() 
+    {
         this.gravitySpeed += this.gravity;
         this.x += this.speedX;
         this.y += this.speedY + this.gravitySpeed;
         this.hitBottom();
     }
-    this.hitBottom = function() {
+    this.hitBottom = function() 
+    {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
             this.y = rockbottom;
             this.gravitySpeed = 0;
         }
     }
-    this.crashWith = function(otherobj) {
+    this.crashWith = function(otherobj) 
+    {
         var myleft = this.x;
         var myright = this.x + (this.width);
         var mytop = this.y;
@@ -125,7 +131,8 @@ function component(width, height, color, x, y, type) {
     }
 }
 
-function updateGameArea() {
+function updateGameArea() 
+{
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) { 
@@ -166,7 +173,8 @@ function updateGameArea() {
     myGamePiece.update();
 }
 
-function everyinterval(n) {
+function everyinterval(n) 
+{
     if ((myGameArea.frameNo / n) % 1 == 0) {
       return true;
     }
@@ -174,7 +182,8 @@ function everyinterval(n) {
     //returns true if framenumber corresponds with interval
 }
 
-function accelerate(n) {
+function accelerate(n) 
+{
     myGamePiece.gravity = n;
 }
 </script>
